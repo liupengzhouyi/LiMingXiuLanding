@@ -11,7 +11,7 @@ public class LinkMySQL8_0_16 implements LinkMySQL {
     //驱动程序名
     private String driver = "com.mysql.cj.jdbc.Driver";
     //URL指向要访问的数据库名mydata
-    private String url = "jdbc:mysql://114.116.4.196:3306/database_for_web?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true";
+    private String url = "jdbc:mysql://114.116.4.196:3306/mingxiuDataBase?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true";
     //MySQL配置时的用户名
     private String user = "root";
     //MySQL配置时的密码

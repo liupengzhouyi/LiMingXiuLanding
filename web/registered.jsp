@@ -16,7 +16,7 @@
 </h1>
 <hr>
 
-<form action="" method="post">
+<form action="/Registered" method="post">
     <table >
         <tr>
             <th>

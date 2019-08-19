@@ -1,104 +1,106 @@
 package neuedu.dao.impl;
 
-import neuedu.dao.BaseDao;
+import LinkDatabase.LinkMySQL.DeleteData;
+import LinkDatabase.LinkMySQL.SaveData;
+import LinkDatabase.LinkMySQL.SelectData;
+import LinkDatabase.LinkMySQL.UpdateData;
 import neuedu.dao.UserInfoDao;
 import neuedu.entity.UserInfo;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 
-public class UserInfoDaoImpl extends BaseDao implements UserInfoDao {
+public class UserInfoDaoImpl implements UserInfoDao {
 
-	@Override
-	public int addUser(UserInfo u) {
-		String sql  = "insert into userinfo (username,pass,type) values(?,?)";
-		Object[] params = new Object[2];
-		params[0]=u.getUsername();
-		params[1]=u.getPass();
-		//执行增删改的共通方法
-		int i = executeIUD(sql, params);
-		return i;
-	}
+    @Override
+    public int addUser(UserInfo u) throws SQLException, ClassNotFoundException {
+        String sql = "INSERT INTO userInfo (username, pass, type) VALUES (\'" + u.getUsername() + "\', \'" + u.getPass() + "\', " + u.getType() + ")";
+        System.out.println(sql);
+        SaveData saveData = new SaveData(sql);
+        if (saveData.isResults()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
-	@Override
-	public int delUser(Integer id) {
-		String sql  = "delete from userinfo where id=?";
-		Object[] params = new Object[1];
-		params[0]=id;
-		//执行增删改的共通方法
-		int i = executeIUD(sql, params);
-		return i;
-	}
+    @Override
+    public int delUser(Integer id) throws SQLException, ClassNotFoundException {
+        String sql = "delete from userInfo where id = " + id + ";";
+        DeleteData deleteData = new DeleteData(sql);
+        if (deleteData.isResults()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
-	@Override
-	public int modifyUser(UserInfo u) {
-		String sql  = "update userinfo set username=? , pass=? where id=?";
-		
-		Object[] params = new Object[3];
-		params[0]=u.getUsername();
-		params[1]=u.getPass();
-		params[2]=u.getId();
-		
-		//执行增删改的共通方法
-		int i = executeIUD(sql, params);
-		return i;
-	}
+    @Override
+    public int updateUser(UserInfo u) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE userInfo SET username=\'" + u.getUsername() + "\', pass=\'" + u.getPass() + "\', type=\'" + u.getType() + "\' WHERE id=1;";
+        UpdateData updateData = new UpdateData(sql);
+        if (updateData.isResults()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
-	@Override
-	public List<UserInfo> queryAll() {
-		List<UserInfo> list = new ArrayList<UserInfo>();
-		try {
-			String sql="select * from userinfo";
-			
-			ResultSet rs = executeSelect(sql, null);
-			
-			//结果集的循环使用固定写法
-			while(rs.next()){
-				UserInfo temp = new UserInfo();
-				System.out.print(rs.getInt("id")+"\t");
-				System.out.print(rs.getString("username")+"\t");
-				System.out.print(rs.getString(3)+"\t\n");
-				temp.setId(rs.getInt(1));
-				temp.setUsername(rs.getString(2));
-				temp.setPass(rs.getString(3));
-				
-				//将结果集中的内容,都放在一个集合中
-				list.add(temp);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			closeAll(BaseDao.con, BaseDao.pst, rs);// 手动的关闭
-		}
+    @Override
+    public List<UserInfo> queryAll() throws SQLException, ClassNotFoundException {
+        String sql = "select * from userInfo where type = 0;";
+        SelectData selectData = new SelectData(sql);
+        ResultSet resultSet = selectData.getResultSet();
+        List<UserInfo> list = new ArrayList<UserInfo>();
+        while(resultSet.next()) {
+            UserInfo userInfo = new UserInfo();
+            userInfo.setId(resultSet.getInt("id"));
+            userInfo.setUsername(resultSet.getString("username"));
+            userInfo.setPass(resultSet.getString("pass"));
+            userInfo.setType(resultSet.getInt("type"));
+            list.add(userInfo);
+        }
+        return list;
+    }
 
-		
-		return list;
-	}
+    @Override
+    public UserInfo landing(String username, String pass) throws SQLException, ClassNotFoundException {
+        String sql = "select * from userInfo where username = \'" + username + "\' and pass = \'" + pass + "\';";
+        SelectData selectData = new SelectData(sql);
+        ResultSet resultSet = selectData.getResultSet();
+        List<UserInfo> list = new ArrayList<UserInfo>();
+        UserInfo userInfo = null;
+        while(resultSet.next()) {
+            userInfo = new UserInfo();
+            userInfo.setId(resultSet.getInt("id"));
+            userInfo.setUsername(resultSet.getString("username"));
+            userInfo.setPass(resultSet.getString("pass"));
+            userInfo.setType(resultSet.getInt("type"));
+        }
+        return userInfo;
+    }
 
-	@Override
-	public UserInfo queryByExample(String username, String pass) {
-		UserInfo u = new UserInfo();
-		try {
-			String sql ="select * from userinfo where username=? and pass=?";
-			Object[] params = new Object[2];
-			params[0]=username;
-			params[1]=pass;
-			
-			ResultSet rs = executeSelect(sql, params);
-			
-			while (rs.next()) {
-				u.setId(rs.getInt(1));
-				u.setUsername(rs.getString(2));
-				u.setPass(rs.getString(3));
-			}			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    @Override
+    public boolean selectUser(String username) throws SQLException, ClassNotFoundException {
+        boolean key = false;
+        String sql = "select * from userInfo where username = \'" + username + "\';";
+        SelectData selectData = new SelectData(sql);
+        ResultSet resultSet = selectData.getResultSet();
+        while(resultSet.next()) {
+            key = true;
+        }
+        return key;
+    }
 
-		return u;
-	}
-
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setType(1);
+        userInfo.setPass("111111");
+        userInfo.setUsername("liupeng");
+        new UserInfoDaoImpl().addUser(userInfo);
+    }
 }

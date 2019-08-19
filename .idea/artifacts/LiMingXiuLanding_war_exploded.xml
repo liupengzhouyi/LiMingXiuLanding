@@ -9,6 +9,9 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="mysql-connector-java-8.0.16" />
+          <element id="library" level="project" name="junit-jupiter-5.4.2" />
+          <element id="library" level="project" name="junit-jupiter-params-5.4.2" />
+          <element id="library" level="project" name="junit-jupiter-api-5.4.2" />
         </element>
       </element>
     </root>
