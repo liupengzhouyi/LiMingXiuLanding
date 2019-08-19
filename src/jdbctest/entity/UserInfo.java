@@ -1,4 +1,4 @@
-package jdbctest.entity;
+package neuedu.entity;
 
 public class UserInfo {
 	private Integer id;

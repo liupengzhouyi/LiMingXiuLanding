@@ -3,37 +3,36 @@ package jdbctest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import jdbctest.entity.UserInfo;
+import neuedu.entity.UserInfo;
 /**
- * java .sql .  °ü ×¨ÃÅÊµÏÖ Êý¾Ý¿â½»»¥
+ * java .sql .  ï¿½ï¿½ ×¨ï¿½ï¿½Êµï¿½ï¿½ ï¿½ï¿½ï¿½Ý¿â½»ï¿½ï¿½
  * 
 
-	ÐÞ¸Ä±íÖÐµÄ¼ÇÂ¼
+	ï¿½Þ¸Ä±ï¿½ï¿½ÐµÄ¼ï¿½Â¼
  * @author Administrator
  *
  */
 public class Test5 {
 
 	public static void main(String[] args) {
-		Connection con = null;//¸ºÔðÓëÊý¾ÝÁ¬½ÓÓÃµÄ
-		PreparedStatement pstat = null; // Ô¤±àÒëµÄsqlÓï¾ä×°ÔØÆ÷,±ÈÆÕÍ¨statementµÄÓÅÊÆÔÚÓÚ´«µÝ²ÎÊýÊ±,¸ü°²È«ºÍ¸ßÐ§
+		Connection con = null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½
+		PreparedStatement pstat = null; // Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½sqlï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Í¨statementï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ý²ï¿½ï¿½ï¿½Ê±,ï¿½ï¿½ï¿½ï¿½È«ï¿½Í¸ï¿½Ð§
 		
 		List<UserInfo> list = new ArrayList<UserInfo>();
 		
 		try {
-			//1.¼ÓÔØmysqlÊý¾Ý¿âÇý¶¯
+			//1.ï¿½ï¿½ï¿½ï¿½mysqlï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			//2.»ñÈ¡Êý¾Ý¿â»Ø»°
+			//2.ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ý¿ï¿½Ø»ï¿½
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaweb02", "root", "123456");
 			
-			System.out.println("½¨Á¢Êý¾Ý¿âÁ¬½Ó³É¹¦!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Ó³É¹ï¿½!");
 			
-			//3.×°ÔØÒ»¸ö²éÑ¯µÄsqlÓï¾ä
+			//3.×°ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½sqlï¿½ï¿½ï¿½
 			String sql = "delete from userinfo where id=?";	
 			pstat = con.prepareStatement(sql);
 			pstat.setObject(1, "3");
@@ -41,20 +40,20 @@ public class Test5 {
 			
 			int i = pstat.executeUpdate();
 			
-			System.out.println("Ó°ÏìÁË"+i+"ÐÐÊý¾Ý");
+			System.out.println("Ó°ï¿½ï¿½ï¿½ï¿½"+i+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			
 			
 		} catch (Exception e) {
-			System.out.println("Êý¾Ý¿âÁ¬½ÓÊ§°Ü!");
+			System.out.println("ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½!");
 			e.printStackTrace();
 		} finally {
-			// ¹Ø±ÕË³Ðò  rs  -> stat  -> con
+			// ï¿½Ø±ï¿½Ë³ï¿½ï¿½  rs  -> stat  -> con
 			try {
 				if(null!=pstat){
 					pstat.close();
 				}
 				if (null!=con) {			
-						con.close();// ¹Ø±Õ»Ø»°,Çå¿ÕjvmÄÚ´æ
+						con.close();// ï¿½Ø±Õ»Ø»ï¿½,ï¿½ï¿½ï¿½jvmï¿½Ú´ï¿½
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();

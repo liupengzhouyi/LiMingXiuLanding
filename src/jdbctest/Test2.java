@@ -7,43 +7,43 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import jdbctest.entity.UserInfo;
+import neuedu.entity.UserInfo;
 /**
- * java .sql .  °ü ×¨ÃÅÊµÏÖ Êý¾Ý¿â½»»¥
- * ¶ÁÈ¡Ò»¸ö±íÖÐµÄÊý¾Ý
+ * java .sql .  ï¿½ï¿½ ×¨ï¿½ï¿½Êµï¿½ï¿½ ï¿½ï¿½ï¿½Ý¿â½»ï¿½ï¿½
+ * ï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
  * @author Administrator
  *
  */
 public class Test2 {
 
 	public static void main(String[] args) {
-		Connection con = null;//¸ºÔðÓëÊý¾ÝÁ¬½ÓÓÃµÄ
-		Statement stat = null;//×°ÔØsqlÓï¾äÓÃµÄ
+		Connection con = null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½
+		Statement stat = null;//×°ï¿½ï¿½sqlï¿½ï¿½ï¿½ï¿½Ãµï¿½
 		ResultSet rs = null; 
 		
 		List<UserInfo> list = new ArrayList<UserInfo>();
 		
 		try {
-			//1.¼ÓÔØmysqlÊý¾Ý¿âÇý¶¯
+			//1.ï¿½ï¿½ï¿½ï¿½mysqlï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			//2.»ñÈ¡Êý¾Ý¿â»Ø»°
+			//2.ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ý¿ï¿½Ø»ï¿½
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaweb02", "root", "123456");
 			
-			System.out.println("½¨Á¢Êý¾Ý¿âÁ¬½Ó³É¹¦!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Ó³É¹ï¿½!");
 			
-			//3.×°ÔØÒ»¸ö²éÑ¯µÄsqlÓï¾ä
+			//3.×°ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½sqlï¿½ï¿½ï¿½
 			
 //			String sql = "select * from userinfo";
 			
 			stat = con.createStatement();
 			
-			//Ê¹ÓÃstat¶ÔÏó×°ÔØÒ»¸ösqlÓï¾ä,µÃµ½µÄ½á¹û·ÅÔÚrs¶ÔÏóÖÐ
+			//Ê¹ï¿½ï¿½statï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Ò»ï¿½ï¿½sqlï¿½ï¿½ï¿½,ï¿½Ãµï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			rs = stat.executeQuery("select * from userinfo");
 			
-			System.out.println("µÃµ½µÄÊý¾ÝÈçÏÂ");
+			System.out.println("ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			
-			//½á¹û¼¯µÄÑ­»·ÒªÊ¹ÓÃ¹Ì¶¨Ð´·¨
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ÒªÊ¹ï¿½Ã¹Ì¶ï¿½Ð´ï¿½ï¿½
 			while(rs.next()){
 				UserInfo temp = new UserInfo();
 				System.out.print(rs.getInt("id")+"\t");
@@ -53,7 +53,7 @@ public class Test2 {
 				temp.setUsername(rs.getString(2));
 				temp.setPass(rs.getString(3));
 				
-				//½«½á¹û¼¯ÖÐµÄÄÚÈÝ,¶¼·ÅÔÚÒ»¸ö¼¯ºÏÖÐ
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				list.add(temp);
 			}
 			
@@ -63,10 +63,10 @@ public class Test2 {
 			}
 			
 		} catch (Exception e) {
-			System.out.println("Êý¾Ý¿âÁ¬½ÓÊ§°Ü!");
+			System.out.println("ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½!");
 			e.printStackTrace();
 		} finally {
-			// ¹Ø±ÕË³Ðò  rs  -> stat  -> con
+			// ï¿½Ø±ï¿½Ë³ï¿½ï¿½  rs  -> stat  -> con
 			try {
 				if(null!=rs){
 					rs.close();
@@ -75,7 +75,7 @@ public class Test2 {
 					stat.close();
 				}
 				if (null!=con) {			
-						con.close();// ¹Ø±Õ»Ø»°,Çå¿ÕjvmÄÚ´æ
+						con.close();// ï¿½Ø±Õ»Ø»ï¿½,ï¿½ï¿½ï¿½jvmï¿½Ú´ï¿½
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();
