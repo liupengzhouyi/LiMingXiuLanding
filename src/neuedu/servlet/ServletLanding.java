@@ -39,6 +39,7 @@ public class ServletLanding extends HttpServlet {
                     // userWelcome.jsp
                 } else {
                     System.out.println("VIP用户");
+                    response.sendRedirect("/ListUser");
                 }
             }
         } catch (SQLException e) {
