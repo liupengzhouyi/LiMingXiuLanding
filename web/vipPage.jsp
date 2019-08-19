@@ -70,7 +70,7 @@
             %>
         </td>
         <td>
-            <a href="/DeleteUser?id=<%=userInfo.getId()%>">编辑</a>
+            <a href="/update.jsp?id=<%=userInfo.getId()%>">编辑</a>
         </td>
         <td>
             <a href="/DeleteUser?id=<%=userInfo.getId()%>">删除</a>

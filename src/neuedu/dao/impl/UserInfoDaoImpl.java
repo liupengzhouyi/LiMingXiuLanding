@@ -41,7 +41,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
     @Override
     public int updateUser(UserInfo u) throws SQLException, ClassNotFoundException {
-        String sql = "UPDATE userInfo SET username=\'" + u.getUsername() + "\', pass=\'" + u.getPass() + "\', type=\'" + u.getType() + "\' WHERE id=1;";
+        String sql = "UPDATE userInfo SET username=\'" + u.getUsername() + "\', type=\'" + u.getType() + "\' WHERE id=" + u.getId() + ";";
         UpdateData updateData = new UpdateData(sql);
         if (updateData.isResults()) {
             return 1;
