@@ -1,23 +1,23 @@
 package neuedu.dao.impl;
 
+import neuedu.dao.BaseDao;
+import neuedu.dao.UserInfoDao;
+import neuedu.entity.UserInfo;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.neuedu.dao.BaseDao;
-import com.neuedu.dao.UserInfoDao;
-import com.neuedu.entity.UserInfo;
+
 
 public class UserInfoDaoImpl extends BaseDao implements UserInfoDao {
 
 	@Override
 	public int addUser(UserInfo u) {
 		String sql  = "insert into userinfo (username,pass) values(?,?)";
-		
 		Object[] params = new Object[2];
 		params[0]=u.getUsername();
 		params[1]=u.getPass();
-		
 		//执行增删改的共通方法
 		int i = executeIUD(sql, params);
 		return i;
@@ -26,10 +26,8 @@ public class UserInfoDaoImpl extends BaseDao implements UserInfoDao {
 	@Override
 	public int delUser(Integer id) {
 		String sql  = "delete from userinfo where id=?";
-		
 		Object[] params = new Object[1];
 		params[0]=id;
-		
 		//执行增删改的共通方法
 		int i = executeIUD(sql, params);
 		return i;

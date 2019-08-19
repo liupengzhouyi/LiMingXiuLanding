@@ -1,8 +1,8 @@
 package neuedu.dao;
 
-import java.util.List;
+import neuedu.entity.UserInfo;
 
-import com.neuedu.entity.UserInfo;
+import java.util.List;
 
 public interface UserInfoDao {
 	int addUser(UserInfo u);

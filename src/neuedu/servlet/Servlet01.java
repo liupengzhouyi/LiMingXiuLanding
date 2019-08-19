@@ -1,5 +1,8 @@
 package neuedu.servlet;
 
+import neuedu.dao.impl.UserInfoDaoImpl;
+import neuedu.entity.UserInfo;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -9,15 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.neuedu.dao.impl.UserInfoDaoImpl;
-import com.neuedu.entity.UserInfo;
+
 
 /**
  * Servlet implementation class Servlet01
  */
 @WebServlet("/Servlet01")
 public class Servlet01 extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -26,8 +29,6 @@ public class Servlet01 extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -105,7 +106,5 @@ public class Servlet01 extends HttpServlet {
 			
 			request.getRequestDispatcher("list.jsp").forward(request, response);
 		}
-		
-		
 	}
 }
