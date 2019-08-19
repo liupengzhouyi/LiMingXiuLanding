@@ -14,7 +14,7 @@ public class UserInfoDaoImpl extends BaseDao implements UserInfoDao {
 
 	@Override
 	public int addUser(UserInfo u) {
-		String sql  = "insert into userinfo (username,pass) values(?,?)";
+		String sql  = "insert into userinfo (username,pass,type) values(?,?)";
 		Object[] params = new Object[2];
 		params[0]=u.getUsername();
 		params[1]=u.getPass();

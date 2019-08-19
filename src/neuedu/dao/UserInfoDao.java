@@ -14,7 +14,7 @@ public interface UserInfoDao {
 	List<UserInfo> queryAll();
 	
 	UserInfo queryByExample(String username, String pass);
-//	
+
 //	UserInfo queryById(Integer id);
 	
 }
