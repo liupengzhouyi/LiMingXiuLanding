@@ -1,4 +1,4 @@
-<%--
+<%@ page import="neuedu.entity.UserInfo" %><%--
   Created by IntelliJ IDEA.
   User: liupeng
   Date: 2019-08-19
@@ -11,12 +11,16 @@
     <title>用户登陆</title>
 </head>
 <body>
+<%
+    HttpSession httpSession = request.getSession();
+    UserInfo userInfo = (UserInfo) httpSession.getAttribute("user");
+%>
 <h1 style="text-align:center">
     不知名网站——用户登陆成功
 </h1>
 <hr>
 <h3 style="text-align:center">
-    欢迎***用户访问某不知名网站
+    欢迎<%=userInfo.getUsername()%>用户访问某不知名网站
 </h3>
 </body>
 </html>

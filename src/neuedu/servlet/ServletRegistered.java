@@ -36,15 +36,19 @@ public class ServletRegistered extends HttpServlet {
             if (key) {
                 // 重复
                 System.out.println("用户名重复");
+                response.sendRedirect("/usernameError.jsp");
             } else {
                 // 不重复
                 System.out.println("用户名不重复");
                 // 开始注册
                 int registerKey = userInfoDao.addUser(userInfo);
-                if (registerKey != 1) {
+                System.out.println("registerKey: " + registerKey);
+                if (registerKey == 1) {
                     System.out.println("注册失败");
+                    response.sendRedirect("/registeredFailure.jsp");
                 } else {
                     System.out.println("注册成功");
+                    response.sendRedirect("/success.jsp");
                 }
             }
         } catch (SQLException e) {
